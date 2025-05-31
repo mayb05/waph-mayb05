@@ -23,6 +23,8 @@ This is a private repository for Bridget May to store all code from the course. 
 [Hands-on exercises in lectures](labs) 
 
   - [Lab 0](labs/lab0): Development Environment Setup 
+  - [Lab 1](labs/lab1): Foundations of the Web
+  - [Lab 2](labs/lab2): Front-end Web Development
 
 ### Hackations
 
