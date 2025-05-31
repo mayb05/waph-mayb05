@@ -24,16 +24,23 @@ Lab link: [https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1](https://gi
 #### Part 1 - The Web and HTTP Protocol
 ##### Task 1 - Wireshark and HTTP Protocol
 To start this lab, I installed wireshark in order to view the exchange of packets when visiting example.com. The first thing I did was set the tool to look at any activity then filtered down to HTTP. Only my requests for example.com showed up. After doing this, I clicked on the GET Request to observe what behavior is displayed. Here is an image to capture this:
-[HTTP Request](wireshark.png)
+![HTTP Request](wireshark.png)
 
 I then clicked on the Response message to note the differences in Response. At first I got the 304 error and had to clear my history and do the exercise a second time. We want the code 200.
-[HTTP Response](response.png)
+![HTTP Response](response.png)
 
 Then I clicked right clicked the response and clicked follow-->HTTP to see the messages. Red text is requests and blue text is response.
-[HTTP Stream](followstream.png)
+![HTTP Stream](followstream.png)
 
 ##### Task 2 - Telnet and Wireshark
-placeholder
+The first step was to clear the wireshark capture and then type the telnet command. The command is `telnet example.com 80` After doing so, I typed the Request needed and the host website. Here is a screenshot demonstrating this.
+![Telnet Start](telnet1.png)
+
+The next step was using wireshark to analyze the differences between using my web browser and telnet. The differences were that using the web browser, wireshark knew what my broswer was and had connection info while the telnet version had the barebones information. Here is the telnet request. 
+![Telnet Request](telnet2.png)
+
+I analyzed the response as well. The differences in response were that the telnet version did not have the accept-ranges field and also did not have the date of connection. 
+![Telnet Response](telnet3.png)
 #### Part 2 - Basic Web Apllication Programming
 ##### Task 1 - CGI Web Apps in C
 placeholder
