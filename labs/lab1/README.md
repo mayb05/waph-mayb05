@@ -20,7 +20,7 @@ This is a private repository for Bridget May to store all code from the course. 
 
 ### Lab 1 Overview
 placeholder
-<a link="https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1">Repository Link</a>
+Lab link: [https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1](https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1)
 #### Part 1 - The Web and HTTP Protocol
 ##### Task 1 - Wireshark and HTTP Protocol
 placeholder
