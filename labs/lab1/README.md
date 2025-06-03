@@ -20,6 +20,7 @@ This is a private repository for Bridget May to store all code from the course. 
 
 ### Lab 1 Overview
 Lab link: [https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1](https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1)
+In this lab, I use wireshark to understand HTTP protocol of GET/REQUEST/RESPONSE. I also create programs in c, and php to gain more experience. We also use CGI to deploy my webpages.
 
 #### Part 1 - The Web and HTTP Protocol
 ##### Task 1 - Wireshark and HTTP Protocol
@@ -43,7 +44,19 @@ I analyzed the response as well. The differences in response were that the telne
 ![Telnet Response](telnet3.png)
 #### Part 2 - Basic Web Apllication Programming
 ##### Task 1 - CGI Web Apps in C
-placeholder
+The first step was developing a program in C to print helloworld then deploy it with CGI. I used the code provided to write the program in C. After doing that, I set the program up to be deployed with CGI. To be able to see the webpage, I had to copy over the code to the cgi-bin. 
+![helloworld.cgi](helloworld.png)
+
+Next, I added html code to display the course info. Each statement required the "print" line. I deployed this one the same way. 
+![Course Additions](htmlandcgi.png)
 ##### Task 2 - PHP with user input
-placeholder
-##### Task 3 - HTTP GET and POST requests
+For task 2, I used PHP to create another hello world program. I had to install php in order to get started. 
+![PHP Helloworld](firstphp.png)
+
+I then did some tests on echo.php for the first part. I had to deploy it first. This code does have some risks as the data is not sanitized in anticipation of attack.
+##### Task 3 - HTTP GET and POST requests\
+I did the test to the data of echo.php with just sending my name. I then compared the two request/responses against each other to notice the differences.
+![Request](echoget.png)
+![Response](echoresponse.png)
+I then tested the program using curl. The user agent changed. 
+![Curl](curltest.png)
