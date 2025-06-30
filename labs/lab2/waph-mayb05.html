@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WAPH-Bridget May</title>
+</head>
+<body>
+	<div id="top">
+		<h1>Web Application Programming and Hacking</h1>
+		<h2>Front-end Web Development Lab</h2>
+		<h3>Instructor: Dr. Phu Phung</h3>
+	</div>
+	<div id="menubar">
+		<h3>Student: Bridget May</h3>
+	</div>
+	<div id="main">
+		<img src="headshot.jpeg" alt="My Headshot" width="50">
+		<div id="email" onclick="showHideEmail()">Show my email</div>
+		<script src="email.js"></script>
+		<p>A simple HTML page!</p>
+		Using the <a href="https://www.w3schools.com/html">W3Schools template</a>
+		<hr>
+		<b> Interaction with forms</b>
+		<div>
+			<i> Form with an HTTP GET Request</i>
+			<form action="/echo.php?" method="GET">
+				Your input: <input name="data">
+				<input type="submit" value="Submit">
+			</form>
+		<hr>
+		<b>Experiements with JavaScript code</b><br>
+		<i>Inlined JavaScript</i>
+		<div id="date" onclick="document.getElementById('date').innerHTML=Date()">click here to show Date()</div>
+		<i>Digital Clock</i>
+		<div id="digit-clock"></div>
+		<script>
+			function DisplayTime(){
+				document.getElementById('digit-clock').innerHTML="Current Time: " +new Date();
+			}
+			setInterval(DisplayTime, 500);
+		</script>
+		<canvas id ="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
+		<script src="https://waph-phung.github.io/clock.js"></script>
+		<script>
+			var canvas = document.getElementById("analog-clock");
+			var ctx = canvas.getContext("2d");
+			var radius = canvas.height / 2;
+			ctx.translate(radius, radius);
+			radius = radius * 0.90;
+			setInterval(drawClock, 1000);
+
+			function drawClock() {
+				drawFace(ctx, radius);
+				drawNumbers(ctx, radius);
+				drawTime(ctx, radius);
+			}
+		</script>
+	</div>
+</body>
+</html>

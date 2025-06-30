@@ -18,5 +18,15 @@ Respository's URL: [https://github.com/mayb05/waph-mayb05.git](https://github.co
 
 This is a private repository for Bridget May to store all code from the course. The organization of this repository is as follows.
 
-### Lab 1 Overview
+### Lab 2 Overview
+Lab link: [https://github.com/mayb05/waph-mayb05/tree/main/labs/lab2](https://github.com/mayb05/waph-mayb05/tree/main/labs/lab2)
+In this lab, I created a simple HTML website that has my information as well as simple forms and css styling. Important functionalities were buttons, forms, and the time being shown. 
+
+#### Task 1: HTML and JavaScript
+##### a. HTML
+Here is a screenshot to demonstrate my basic html page. It has my headshot and a form. 
+![Simple HTMl](simplehtml.png)
+
+##### b. Simple JavaScript
+
 
