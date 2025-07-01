@@ -5,7 +5,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<title>WAPH-Bridget May</title>
 	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href=https://www.w3schools.com/html/styles.css>
+	<link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
 	<style>
 		body {background-color: powderblue;}
 		h1 {color: blue;}
@@ -85,7 +85,7 @@
 						document.getElementById("response").innerText="Response from server:" + xhttp.responseText;
 					}
 				}
-				xhttp.open("GET", "echo.php?data="+input, true);
+				xhttp.open("GET", "echo.php?data=" + encodeURIComponent(input), true);
 				xhttp.send();
 				document.getElementById("data").value="";
 			}
@@ -95,7 +95,7 @@
 			})
 
 			async function guessAge(name){
-				const response= await fetch("https://api.agify.io/?name="+name);
+				const response = await fetch("https://api.agify.io/?name=" + encodeURIComponent(name));
 				const result= await response.json();
 				$("#response").html("Hi" + name + ", your age should be " + result.age);
 			}
@@ -105,7 +105,7 @@
 				var input= $("#data").val();
 				if (input.length ==0) return;
 				$.get("echo.php?data="+input, function(result) {
-					$("#response").html("Response from server:" + result);
+					$("#response").text("Response from server: " + result);
 				}
 			);
 			$("#data").val("");
@@ -117,7 +117,7 @@
 				if (input.length == 0) return;
 				$.post("echo.php", {data: input},
 					function(result) {
-						$("#response").html("Response from server:" + result);
+						$("#response").text("Response from server: " + result);
 					}
 				);
 				$("#data").val("");
