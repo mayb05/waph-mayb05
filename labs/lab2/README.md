@@ -29,4 +29,15 @@ Here is a screenshot to demonstrate my basic html page. It has my headshot and a
 
 ##### b. Simple JavaScript
 
+Here is my website after I added the javascript. I added a button to reveal my email. After clicking my email, it will direct you to email me! I also added two ways to see the date by using script tags and inline JavaScript. The last thing added was the remote script to make the analog clock. 
+![JavaScript Additions](javascript.png)
 
+#### Task 2: Ajax, CSS, JQuery, and Web API integrations
+##### a. Ajax
+
+For this task, I used Ajax to view requests between the user and the server. The user can type anything into the Ajax requests box then submit and see it repeated back to them. You can inspect the network and see the request and also all of the key presses when the user types as well. 
+![Ajax Addition](ajax.png)
+
+##### b. CSS
+
+I styled my website using CSS to give it a colorful look. 

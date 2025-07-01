@@ -3,11 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<title>WAPH-Bridget May</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href=https://www.w3schools.com/html/styles.css>
+	<style>
+		body {background-color: powderblue;}
+		h1 {color: blue;}
+	</style>
 </head>
 <body>
 	<div id="top">
 		<h1>Web Application Programming and Hacking</h1>
-		<h2>Front-end Web Development Lab</h2>
+		<h2 style="color:black;">Front-end Web Development Lab</h2>
 		<h3>Instructor: Dr. Phu Phung</h3>
 	</div>
 	<div id="menubar">
@@ -53,6 +59,31 @@
 				drawFace(ctx, radius);
 				drawNumbers(ctx, radius);
 				drawTime(ctx, radius);
+			}
+		</script>
+		<div>
+			<i> Ajax Requests </i><br>
+			Your input:
+			<input name="data" onkeypress="console.log('You have pressed a key')" id="data">
+			<input type="button" value="Submit" onclick="getEcho()">
+			<div id="response"></div>
+		</div>
+		<script>
+			function getEcho() {
+				var input = document.getElementById("data").value;
+				if (input.length == 0) {
+					return;
+				}
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						console.log("Received data="+xhttp.responseText);
+						document.getElementById("response").innerText="Response from server:" + xhttp.responseText;
+					}
+				}
+				xhttp.open("GET", "echo.php?data="+input, true);
+				xhttp.send();
+				document.getElementById("data").value="";
 			}
 		</script>
 	</div>
