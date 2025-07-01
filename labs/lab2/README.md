@@ -40,4 +40,15 @@ For this task, I used Ajax to view requests between the user and the server. The
 
 ##### b. CSS
 
-I styled my website using CSS to give it a colorful look. 
+I styled my website using CSS to give it a colorful look. The website refers to w3schools externally. The background comes from internal styles and the text of the "Lab" heading is from inline style. 
+![Styling](css.png)
+
+##### c. jQuery
+
+For this task, I used jQuery to study the differences between GET and POST requests using jQuery. I made two new buttons to add to the Ajax Request that specifically used new methods for jQuery GET and POST requests. 
+![POSTGET](jquery.png)
+
+##### d. Web API Integrations
+
+I integrated the joke and age api's into my website. I just had the joke load in with the clock then had the age load with the Ajax Request section. The age api uses fetch while the joke api uses Ajax. The API believes that I am 60. I am 22 but I feel 60 sometimes so I guess that makes sense. 
+![APIs](agejoke.png)
