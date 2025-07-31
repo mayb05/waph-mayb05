@@ -25,7 +25,11 @@ In this lab, I focused on session management in PHP applications. I learned how 
 
 #### Task 1: Session Management in PHP 101
 ##### 1a: Sessiontest.php
-placeholder
+Here are the two different browser screenshots for the results of the code. 
+![Chrome](task1a1.png)
+
+![Firefox](task1a2.png)
+
 
 ##### 1b: Wireshark Observations
 placeholder
