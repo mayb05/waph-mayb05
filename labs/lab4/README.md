@@ -32,10 +32,16 @@ Here are the two different browser screenshots for the results of the code.
 
 
 ##### 1b: Wireshark Observations
-placeholder
+The session is set in the first screenshot then the cookie is held in the second one. 
+![First Request](task1b1.png)
+
+![Second](task1b2.png)
 
 ##### 1c: Session Hijacking
-placeholder
+
+![Cookie](task1c1.png)
+
+![Attack](task1c2.png)
 
 #### Task 2: Insecure Session Auths
 ##### 2a: Revised Login System with Sessions
