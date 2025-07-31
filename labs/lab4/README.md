@@ -54,7 +54,8 @@ This is when you try to redirect to index.php without logging in.
 ![Skipping form.php](task2a2.png)
 
 ##### 2b: Session Hijacking pt 2
-placeholder
+In this task, I took the cookie from the chrome browser (I was logged in on this browser). After getting the cookie, I set it as my cookie in the Firefox browser and I didn't have to login on form.php at all. 
+![Stolen Cookies!](task2b.png)
 
 #### Task 3: Secure Sessions
 ##### 3a: Data Protection and Setup
