@@ -1,16 +1,27 @@
 <?php
-	session_start();   
-	if (checklogin_mysql($_POST["username"],$_POST["password"])) {
-		$username = $_POST["username"];
-  		$password = $_POST["password"];
-  		echo "got username=" . $username . ";password= $password";
-?>
-	<h2> Welcome <?php echo $_POST['username']; ?> !</h2>
-<?php		
-	}else{
-		echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
+	session_start();  
+	if (isset($_POST["username"]) and isset($_POST['password'])){ 
+		if (checklogin_mysql($_POST["username"],$_POST["password"])) {
+			$_SESSION["authticated"] = TRUE;
+			$_SESSION["username"] = $_POST['username'];
+		}else{
+			session_destroy();
+			echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
+			die();
+		}
+	}
+	if (!$_SESSION["authticated"] or $_SESSION['authticated'] != TRUE) {
+		session_destroy();
+		echo "<script>alert('You have not logged in. Please login first!');</script>";
+		header("Refresh:0; form.php");
 		die();
 	}
+
+?>
+	<h2> Welcome <?php echo htmlentities($_SESSION['username']); ?> !</h2>
+
+	<a href="logout.php">Logout</a>
+<?php		
 	function checklogin($username, $password) {
 		$account = array("admin","1234");
 		if (($username== $account[0]) and ($password == $account[1])) 

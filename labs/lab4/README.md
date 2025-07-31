@@ -45,7 +45,13 @@ The session is set in the first screenshot then the cookie is held in the second
 
 #### Task 2: Insecure Session Auths
 ##### 2a: Revised Login System with Sessions
-placeholder
+I revised the login system from lab 3 to have a logout button and check the users authication to avoid bypassing the form.php page. The first screenshot is a successful login.
+
+![Sucessful Login](task2a1.png)
+
+This is when you try to redirect to index.php without logging in.
+
+![Skipping form.php](task2a2.png)
 
 ##### 2b: Session Hijacking pt 2
 placeholder
