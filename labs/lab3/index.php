@@ -25,10 +25,15 @@
 			exit();
 		}
 		//return FALSE;
-		$sql = "SELECT * FROM users WHERE username='" . $username . "'";
-		$sql = $sql . " AND password=md5('" . $password . "')";
+		//$sql = "SELECT * FROM users WHERE username='" . $username . "'";
+		//$sql = $sql . " AND password=md5('" . $password . "')";
 		//echo "DEBUG>sql=$sql"; return TRUE;
-		$result = $mysqli->query($sql);
+		//$result = $mysqli->query($sql);
+		$prepared_sql = "SELECT * FROM users WHERE username= ? " . " AND password=md5(?);";
+		$stmt = $mysqli->prepare($prepared_sql);
+		$stmt->bind_param("ss", $username,$password);
+		$stmt->execute();
+		$result=$stmt->get_result();
 		if($result->num_rows ==1)
 			return TRUE;
 		return false;
