@@ -59,10 +59,18 @@ In this task, I took the cookie from the chrome browser (I was logged in on this
 
 #### Task 3: Secure Sessions
 ##### 3a: Data Protection and Setup
-placeholder
+I setup this part by generating an ssl key to be able to use https which is more secure than http. 
+
+![SSL Key](task3a.png)
+
+![Index.php](task3a2.png)
 
 ##### 3b: Securing Against Session Hijacking
-placeholder
+I revised my index.php to secure the cookies so they could not be easily found. 
+
+![Secure](Task3b1.png)
 
 ##### 3c: Defense in Depth
-placeholder
+This task required me to adjust my index.php to store the browser information to avoid session hijacking. If the browser info doesn't match, hijacking is detected. 
+
+![Prevention!](task4b2.png)

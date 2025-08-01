@@ -1,9 +1,16 @@
 <?php
+	$lifetime = 15 * 60;
+	$path = "/";
+	$domain = "localhost";
+	$secure = TRUE;
+	$httponly = TRUE;
+	session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
 	session_start();  
 	if (isset($_POST["username"]) and isset($_POST['password'])){ 
 		if (checklogin_mysql($_POST["username"],$_POST["password"])) {
 			$_SESSION["authticated"] = TRUE;
 			$_SESSION["username"] = $_POST['username'];
+			$_SESSION["browser"] = $_SERVER['HTTP_USER_AGENT'];
 		}else{
 			session_destroy();
 			echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
@@ -14,6 +21,12 @@
 		session_destroy();
 		echo "<script>alert('You have not logged in. Please login first!');</script>";
 		header("Refresh:0; form.php");
+		die();
+	}
+
+	if ($_SESSION['browser'] !=$_SERVER['HTTP_USER_AGENT']) {
+		echo "<script>alert('Session hijacking is detected!');</script>";
+		header("Refresh:0; url=form.php");
 		die();
 	}
 
