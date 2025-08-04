@@ -1,66 +1,62 @@
+<!-- addnewuser.php -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login page - SecAD</title>
+  <!-- Minty Bootswatch Theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/minty/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #a8edea, #fed6e3);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+
 <?php
-	$lifetime = 15 * 60;
-	$path = "/";
-	$domain = "localhost";
-	$secure = TRUE;
-	$httponly = TRUE;
-	session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
-	session_start();  
-	if (isset($_POST["username"]) and isset($_POST['password'])){ 
-		if (checklogin_mysql($_POST["username"],$_POST["password"])) {
-			$_SESSION["authticated"] = TRUE;
-			$_SESSION["username"] = $_POST['username'];
-			$_SESSION["browser"] = $_SERVER['HTTP_USER_AGENT'];
-		}else{
-			session_destroy();
-			echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
-			die();
-		}
-	}
-	if (!$_SESSION["authticated"] or $_SESSION['authticated'] != TRUE) {
-		session_destroy();
-		echo "<script>alert('You have not logged in. Please login first!');</script>";
-		header("Refresh:0; form.php");
-		die();
-	}
+  require "database.php";
 
-	if ($_SESSION['browser'] !=$_SERVER['HTTP_USER_AGENT']) {
-		echo "<script>alert('Session hijacking is detected!');</script>";
-		header("Refresh:0; url=form.php");
-		die();
-	}
+  if($_SERVER['REQUEST_METHOD'] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $fullname = $_POST["fullname"];
+    $repassword = $_POST["repassword"];
 
+    // if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+    //     echo "<h1>Invalid email format for username!</h1>";
+    //     exit();
+    // }
+
+    $password_pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/";
+    if (!preg_match($password_pattern, $password)) {
+        echo "<h1>Password does not meet the required criteria!</h1>";
+        exit();
+    }
+
+
+    if (isset($username) AND isset($password)) {
+      if(addnewuser($username, $password, $fullname)) {
+        echo "<h1>User registered successfully!</h1>";
+        echo "<h1>Welcome $username !</h5>";
+      } else {
+        echo "Registration failed";
+      }
+    }
+  }
 ?>
-	<h2> Welcome <?php echo htmlentities($_SESSION['username']); ?> !</h2>
 
-	<a href="logout.php">Logout</a>
-<?php		
-	function checklogin($username, $password) {
-		$account = array("admin","1234");
-		if (($username== $account[0]) and ($password == $account[1])) 
-		  return TRUE;
-		else 
-		  return FALSE;
-  	}
-  	function checklogin_mysql($username, $password) {
-		$mysqli = new mysqli('localhost', 'mayb05','blaze','waph'); 
-		if($mysqli->connect_errno){
-			printf("database connection failed: %s\n" ,$mysqli->connect_error);
-			exit();
-		}
-		//return FALSE;
-		//$sql = "SELECT * FROM users WHERE username='" . $username . "'";
-		//$sql = $sql . " AND password=md5('" . $password . "')";
-		//echo "DEBUG>sql=$sql"; return TRUE;
-		//$result = $mysqli->query($sql);
-		$prepared_sql = "SELECT * FROM users WHERE username= ? " . " AND password=md5(?);";
-		$stmt = $mysqli->prepare($prepared_sql);
-		$stmt->bind_param("ss", $username,$password);
-		$stmt->execute();
-		$result=$stmt->get_result();
-		if($result->num_rows ==1)
-			return TRUE;
-		return false;
-  	}
-
-?>
+<a href="form.php">Login</a>
