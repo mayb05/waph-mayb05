@@ -1,36 +1,76 @@
+<!-- registrationform.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>WAPH-Login page</title>
-  <script type="text/javascript">
-      function displayTime() {
-        const options = {
-          month: 'short', // 'Jun'
-          day: '2-digit', // '24'
-          hour: '2-digit', // '07'
-          minute: '2-digit', // '03'
-          second: '2-digit', // '45'
-          hour12: true // 'am'
-        };
-        const formattedTime = new Date().toLocaleString('en-US', options).replace(/,/, '');
-        document.getElementById('digit-clock').innerHTML = "Current time: " + formattedTime;
-      }
-      setInterval(displayTime,500);
-  </script>
+  <title>Sign Up - WAPH Project 2</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/minty/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #a8edea, #fed6e3);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-  <h1>A Simple login form, WAPH</h1>
-  <h2>Student Name</h2>
-  <div id="digit-clock"></div>  
-<?php
-  //some code here
-  echo "Visited time: " . date("M-d h:i:sa")
-?>
-  <form action="index.php" method="POST" class="form login">
-    Username:<input type="text" class="text_field" name="username" /> <br>
-    Password: <input type="password" class="text_field" name="password" /> <br>
-    <button class="button" type="submit">Login</button>
-  </form>
+  <div class="form-container">
+    <h1 class="mb-4 text-center">Sign Up for a New Account</h1>
+
+    <?php
+      echo "<p class='text-muted text-center'>Current time: " . date("Y-m-d h:i:sa") . "</p>";
+    ?>
+
+    <form action="addnewuser.php" method="POST">
+      <div class="mb-3">
+        <label for="fullname" class="form-label">Full Name</label>
+        <input type="text" class="form-control" name="fullname" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" required
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          placeholder="Enter your email"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" required
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=]{8,}$"
+          title="Password must have at least 8 characters with 1 special symbol (@#$%^&+=!), 1 number, 1 lowercase, and 1 uppercase"
+          placeholder="Create a strong password"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+          form.repassword.pattern = this.value;"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="repassword" class="form-label">Retype Password</label>
+        <input type="password" class="form-control" name="repassword" required
+          placeholder="Confirm your password"
+          title="Passwords do not match"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Register</button>
+    </form>
+  </div>
 </body>
 </html>
+
+
