@@ -2,7 +2,7 @@
 <?php
 	$lifetime = 15 * 60; //15 minutes
 	$path="/";
-	$domain="*.project2.com";
+	$domain="localhost";
 	$secure = TRUE;
 	$httponly = TRUE;
 	session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);

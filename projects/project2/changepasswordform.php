@@ -28,11 +28,7 @@
 <div class="form-container">
 
 <?php
-  /* require "session_auth.php";
-  $rand= bin2hex(openssl_random_pseudo_bytes(16));
-  $_SESSION["nocsrftoken"] = $rand; 
-                <input type="hidden" name="nocsrftoken" value="<?php echo $rand; ?>" />
-  */
+  require "session_auth.php";
 
 ?>
 
