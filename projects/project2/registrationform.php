@@ -41,25 +41,27 @@
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" name="username" required pattern="\w+"
-          placeholder="Enter your username" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title: ' ');"
-
+          placeholder="Enter your username"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"
         />
-                  <!-- onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" -->
       </div>
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-          
-          title="Password must have at least 8 characters with 1 special symbol (@#$%^&+=!), 1 number, 1 lowercase, and 1 uppercase"
-          placeholder="Create a strong password" onchange="form.repassword.pattern = this.value;"
-
+        <input type="password" class="form-control" name="password" required
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\w!@#$%^&]{8,}$"
+          placeholder="Your password"
+          title="Password must have at least 8 characters with 1 special symbol !@#$%^& 1 number, 1 lowercase, and 1 UPPERCASE"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : ''); form.repassword.pattern = this.value;"
         />
       </div>
-
+      
       <div class="mb-3">
         <label for="repassword" class="form-label">Retype Password</label>
-        <input type="password" class="form-control" name="repassword" placeholder="Confirm your password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="repassword"
+        <input type="password" class="form-control text_field" name="repassword"
+          placeholder="Retype your password" required
+          title="Password does not match"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"
         />
       </div>
 
@@ -68,5 +70,3 @@
   </div>
 </body>
 </html>
-
-
