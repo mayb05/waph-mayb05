@@ -20,7 +20,7 @@ This is a private repository for Bridget May to store all code from the course. 
 
 ### Project 2 Overview
 Project link: [https://github.com/mayb05/waph-mayb05/tree/main/labs/lab1](https://github.com/mayb05/waph-mayb05/tree/main/projects/project2)
-Video link: 
+Video link: [https://youtu.be/MaWZH1VHObg](https://youtu.be/MaWZH1VHObg)
 
 In this project, I created a website for users to create an account, view their information, edit it, and change passwords securely. Using the security principles used in class, I secured my website from SQL injection, XSS attacks, and session hijacking. 
 
