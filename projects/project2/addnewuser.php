@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Login page - SecAD</title>
+  <title>Login page - WAPH</title>
   <!-- Minty Bootswatch Theme -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/minty/bootstrap.min.css">
   <style>
@@ -29,7 +29,14 @@
 
 <?php
   require "database.php";
-  echo "info from database: ";
+
+  function sanitize_input($input) {
+    $input = trim($input)
+    $input = stripslashes($input)
+    $input = htmlspecialchars($input)
+    return $input;
+  }
+  
   if($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
