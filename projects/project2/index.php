@@ -93,7 +93,7 @@
   echo "<p>Password can be changed using the link below.</p>";
 ?>
   <div class="mt-3">
-    <a href="logout.php">Logout</a> - <a href="changepasswordform.php">Change Password</a>
+    <a href="logout.php">Logout</a> - <a href="changepasswordform.php">Change Password</a> - <a href="editfirstnameform.php">Edit Name</a>
   </div>
 </div>
 </body>
