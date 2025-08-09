@@ -36,18 +36,12 @@
   $username    = isset($_POST['username'])    ? trim($_POST['username'])    : (isset($_REQUEST['username']) ? trim($_REQUEST['username']) : '');
   $newpassword = isset($_POST['newpassword']) ? trim($_POST['newpassword']) : (isset($_REQUEST['newpassword']) ? trim($_REQUEST['newpassword']) : '');
 
-  if ($username === '' || $newpassword === '') {
-      echo "<h3>Missing username or new password.</h3>";
+  if ($newpassword === '') {
+      echo "<h3>Missing new password.</h3>";
       echo '<a href="index.php">Home</a>';
       exit;
   }
 
-  $sessionUser = isset($_SESSION['username']) ? $_SESSION['username'] : null;
-  if (!$sessionUser || strcasecmp($sessionUser, $username) !== 0) {
-      echo "<h3>Unauthorized password change request.</h3>";
-      echo '<a href="index.php">Home</a>';
-      exit;
-  }
 
   $pwPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&])[A-Za-z\d!@#$%^&]{8,}$/';
   if (!preg_match($pwPattern, $newpassword)) {
@@ -95,11 +89,11 @@
   list($ok, $message) = changePassword($username, $newpassword);
 
   if ($ok) {
-      echo "<h2>Password Changed ✅</h2>";
+      echo "<h2>Password Changed </h2>";
       echo "<p>Username: <strong>" . sanitize($username) . "</strong></p>";
       echo "<p>" . sanitize($message) . "</p>";
   } else {
-      echo "<h2>Change Failed ❌</h2>";
+      echo "<h2>Change Failed </h2>";
       echo "<p>" . sanitize($message) . "</p>";
   }
 ?>
