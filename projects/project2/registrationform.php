@@ -40,8 +40,8 @@
 
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" name="username" required
-          placeholder="Enter your email"
+        <input type="text" class="form-control" name="username" required pattern="\w+"
+          placeholder="Enter your username" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title: ' ');"
 
         />
                   <!-- onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" -->
@@ -49,23 +49,17 @@
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" required
+        <input type="password" class="form-control" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
           
           title="Password must have at least 8 characters with 1 special symbol (@#$%^&+=!), 1 number, 1 lowercase, and 1 uppercase"
-          placeholder="Create a strong password"
-          form.repassword.pattern = this.value;
+          placeholder="Create a strong password" onchange="form.repassword.pattern = this.value;"
 
         />
-         <!-- onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : ''); 
-        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=]{8,}$"-->
       </div>
 
       <div class="mb-3">
         <label for="repassword" class="form-label">Retype Password</label>
-        <input type="password" class="form-control" name="repassword" required
-          placeholder="Confirm your password"
-          title="Passwords do not match"
-          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"
+        <input type="password" class="form-control" name="repassword" placeholder="Confirm your password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="repassword"
         />
       </div>
 
