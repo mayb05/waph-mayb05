@@ -31,37 +31,40 @@
   require "database.php";
 
   function sanitize_input($input) {
-    $input = trim($input)
-    $input = stripslashes($input)
-    $input = htmlspecialchars($input)
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
     return $input;
   }
   
-  if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $firstname = $_POST["firstname"];
-    $repassword = $_POST["repassword"];
-    // if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
-    //     echo "<h1>Invalid email format for username!</h1>";
-    //     exit();
-    // }
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-   /* $password_pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/";
+    $username   = sanitize_input($_POST["username"]);
+    $password   = sanitize_input($_POST["password"]);
+    $firstname  = sanitize_input($_POST["firstname"]);
+    $repassword = sanitize_input($_POST["repassword"]);
+
+    if ($password !== $repassword) {
+        echo "<h1>Passwords do not match!</h1>";
+        exit();
+    }
+
+    $password_pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/";
     if (!preg_match($password_pattern, $password)) {
         echo "<h1>Password does not meet the required criteria!</h1>";
         exit();
     }
 
-*/
-    if (isset($username) AND isset($password)) {
-      if(addnewuser($username, $password, $firstname)) {
+    if (!empty($username) && !empty($password) && !empty($firstname)) {
+      if (addnewuser($username, $password, $firstname)) {
         echo "<h1>User registered successfully!</h1>";
-        echo "<h1>Welcome $username !</h5>";
+        echo "<h1>Welcome $username!</h1>";
       } else {
-        echo "Registration failed";
+        echo "<h1>Registration failed</h1>";
       }
-    } 
+    } else {
+      echo "<h1>All fields are required!</h1>";
+    }
   }
 ?>
 
