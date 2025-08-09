@@ -28,56 +28,69 @@
 <?php
   session_start();
 
-  $u = isset($_POST['username']) ? trim($_POST['username']) : '';
-  $p = isset($_POST['password']) ? trim($_POST['password']) : '';
+  // Helper to escape HTML output
+  function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
-  if ($u === '' || $p === '') {
-    echo "<script>alert('Username and password are required.');window.location='form.php';</script>";
-    exit;
-  }
-
-  $mysqli = new mysqli('localhost', 'mayb05', 'blaze', 'waph');
-  if ($mysqli->connect_errno) {
-      printf("Database connection failed: %s\n", $mysqli->connect_error);
-      exit;
-  }
-
-  $prepared_sql = "SELECT username, firstname
-                   FROM users
-                   WHERE username = ? AND password = MD5(?)";
-
-  if (!$stmt = $mysqli->prepare($prepared_sql)) {
-      echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
-      exit;
-  }
-
-  $stmt->bind_param("ss", $u, $p);
-
-  if (!$stmt->execute()) {
-      echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-      exit;
-  }
-
-  $stmt->bind_result($db_username, $db_firstname);
-
-  if ($stmt->fetch()) {
-      $_SESSION['username']  = $db_username;
-      $_SESSION['firstname'] = $db_firstname;
-
-      echo "<h2>Welcome " . htmlentities($db_firstname) . "!</h2>";
-      echo "<h3>User Information</h3>";
-      echo "<p><strong>Username:</strong> " . htmlentities($db_username) . "</p>";
-      echo "<p><strong>First Name:</strong> " . htmlentities($db_firstname) . "</p>";
-      echo "<p>Password can be changed using the link below.</p>";
-  } else {
-      echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
+  // Database login check
+  function checklogin_mysql($username, $password) {
+      $mysqli = new mysqli('localhost', 'mayb05', 'blaze', 'waph'); 
+      if ($mysqli->connect_errno) {
+          printf("Database connection failed: %s\n", $mysqli->connect_error);
+          exit();
+      }
+      $prepared_sql = "SELECT username, firstname FROM users WHERE username = ? AND password = MD5(?)";
+      $stmt = $mysqli->prepare($prepared_sql);
+      $stmt->bind_param("ss", $username, $password);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if ($result->num_rows === 1) {
+          $row = $result->fetch_assoc();
+          $stmt->close();
+          $mysqli->close();
+          return $row; // Return array with username + firstname
+      }
       $stmt->close();
       $mysqli->close();
-      exit;
+      return false;
   }
 
-  $stmt->close();
-  $mysqli->close();
+  // Handle login POST
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['password'])) {
+      $u = trim($_POST['username']);
+      $p = trim($_POST['password']);
+      if ($row = checklogin_mysql($u, $p)) {
+          // Successful login
+          session_regenerate_id(true);
+          $_SESSION['authenticated'] = true;
+          $_SESSION['username'] = $row['username'];
+          $_SESSION['firstname'] = $row['firstname'];
+          $_SESSION['browser']   = $_SERVER['HTTP_USER_AGENT'];
+      } else {
+          echo "<script>alert('Invalid username/password');window.location='form.php';</script>";
+          exit();
+      }
+  }
+
+  // Check authentication
+  if (empty($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+      echo "<script>alert('You have not logged in. Please login first');</script>";
+      session_destroy();
+      header("Refresh:0; url=form.php");
+      exit();
+  }
+  if (!empty($_SESSION['browser']) && $_SESSION['browser'] !== $_SERVER['HTTP_USER_AGENT']) {
+      echo "<script>alert('Session hijacking is detected!');</script>";
+      session_destroy();
+      header("Refresh:0; url=form.php");
+      exit();
+  }
+
+  // Display user info (uses session values)
+  echo "<h2>Welcome " . h($_SESSION['firstname']) . "!</h2>";
+  echo "<h3>User Information</h3>";
+  echo "<p><strong>Username:</strong> " . h($_SESSION['username']) . "</p>";
+  echo "<p><strong>First Name:</strong> " . h($_SESSION['firstname']) . "</p>";
+  echo "<p>Password can be changed using the link below.</p>";
 ?>
   <div class="mt-3">
     <a href="logout.php">Logout</a> - <a href="changepasswordform.php">Change Password</a>
