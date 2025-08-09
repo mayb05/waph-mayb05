@@ -29,33 +29,32 @@
 
 <?php
   require "database.php";
-
+  echo "info from database: ";
   if($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $fullname = $_POST["fullname"];
+    $firstname = $_POST["firstname"];
     $repassword = $_POST["repassword"];
-
     // if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
     //     echo "<h1>Invalid email format for username!</h1>";
     //     exit();
     // }
 
-    $password_pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/";
+   /* $password_pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/";
     if (!preg_match($password_pattern, $password)) {
         echo "<h1>Password does not meet the required criteria!</h1>";
         exit();
     }
 
-
+*/
     if (isset($username) AND isset($password)) {
-      if(addnewuser($username, $password, $fullname)) {
+      if(addnewuser($username, $password, $firstname)) {
         echo "<h1>User registered successfully!</h1>";
         echo "<h1>Welcome $username !</h5>";
       } else {
         echo "Registration failed";
       }
-    }
+    } 
   }
 ?>
 

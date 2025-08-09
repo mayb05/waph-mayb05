@@ -1,4 +1,4 @@
-!-- changepasswordform.php -->
+<!-- changepasswordform.php -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,16 +28,19 @@
 <div class="form-container">
 
 <?php
-  require "session_auth.php";
+  /* require "session_auth.php";
   $rand= bin2hex(openssl_random_pseudo_bytes(16));
-  $_SESSION["nocsrftoken"] = $rand;
+  $_SESSION["nocsrftoken"] = $rand; 
+                <input type="hidden" name="nocsrftoken" value="<?php echo $rand; ?>" />
+  */
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Change Password page - SecAD</title>
+  <title>Change Password page - WAPH</title>
 </head>
 <body>
       	<h1>Change Password, SecAD</h1>
@@ -49,7 +52,6 @@
                 Username: 
                 <?php echo htmlentities($_SESSION["username"]); ?>
                 <br>
-                <input type="hidden" name="nocsrftoken" value="<?php echo $rand; ?>" />
                 New Password: <input type="password" class="text_field" name="newpassword" /> <br>
                 <button class="button" type="submit">
                   Change Password

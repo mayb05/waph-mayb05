@@ -34,28 +34,30 @@
 
     <form action="addnewuser.php" method="POST">
       <div class="mb-3">
-        <label for="fullname" class="form-label">Full Name</label>
-        <input type="text" class="form-control" name="fullname" required />
+        <label for="firstname" class="form-label">Full Name</label>
+        <input type="text" class="form-control" name="firstname" required placeholder="First name" />
       </div>
 
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" name="username" required
-          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
           placeholder="Enter your email"
-          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"
+
         />
+                  <!-- onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" -->
       </div>
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" name="password" required
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=]{8,}$"
+          
           title="Password must have at least 8 characters with 1 special symbol (@#$%^&+=!), 1 number, 1 lowercase, and 1 uppercase"
           placeholder="Create a strong password"
-          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
-          form.repassword.pattern = this.value;"
+          form.repassword.pattern = this.value;
+
         />
+         <!-- onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : ''); 
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=]{8,}$"-->
       </div>
 
       <div class="mb-3">

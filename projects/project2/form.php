@@ -1,4 +1,4 @@
-link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/quartz/bootstrap.min.css">
+
 
 <!-- form.php -->
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/q
 </head>
 <body>
   <div class="form-container">
-    <h1 class="mb-4">A Simple login form, SecAD</h1>
+    <h1 class="mb-4">A Simple login form, WAPH Project 2</h1>
 
     <?php
       //some code here
@@ -37,8 +37,7 @@ link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/q
     <form action="index.php" method="POST" class="form login">
       <div class="mb-3">
         <label for="username" class="form-label">Username (Email):</label>
-        <input type="text" class="form-control" id="username" name="username" required
-          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        <input type="text" class="form-control" id="username" name="username" 
           title="Please enter a valid email address" />
       </div>
 
