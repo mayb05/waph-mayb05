@@ -2,14 +2,14 @@
 <?php
 	$lifetime = 15 * 60; //15 minutes
 	$path="/";
-	$domain="localhost";
+	$domain="192.168.56.101";
 	$secure = TRUE;
 	$httponly = TRUE;
 	session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
 
 	session_start(); 
 
-	if( !isset($_SESSION["logged"] ) or $_SESSION["logged"] != TRUE) {
+	if ( !$_SESSION["authenticated"] or $_SESSION["authenticated"] != TRUE) {
 		echo "<script>alert('You have not logged in. Please login first');</script>";
 		session_destroy();
 		header("Refresh:0; url=form.php");
