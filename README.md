@@ -25,11 +25,11 @@ This is a private repository for Bridget May to store all code from the course. 
   - [Lab 0](labs/lab0): Development Environment Setup 
   - [Lab 1](labs/lab1): Foundations of the Web
   - [Lab 2](labs/lab2): Front-end Web Development
-
-### Hackations
-
-Hands-on hacking exercises
+  - [Lab 3](labs/lab3): PHP & MySQL
+  - [Lab 4](labs/lab4): Session Management in PHP
 
 ### Individual Projects
+[Homework Assignments](projects)
+- [Project 1](projects/project1): Professional Portfolio
+- [Project 2](projects/project2): Login System
 
-### Team Project
