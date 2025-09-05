@@ -4,6 +4,8 @@
 
 ## Bridget May
 
+#### DISCLAIMER: THIS REPO IS NOT TO BE USED IN FUTURE CPS COURSES. THANK YOU.
+
 **Name**: Bridget May
 
 **Email**: [mailto:mayb05@udayton.edu](mayb05@udayton.edu)
